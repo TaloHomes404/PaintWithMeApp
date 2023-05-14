@@ -12,8 +12,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imgbttn_brush_medium"
         />
 
+    <ImageButton
+        android:id="@+id/imgbttn_brush_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/medium_brush"
+        app:layout_constraintTop_toBottomOf="@id/imgbttn_brush_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imgbttn_brush_big"
+        />
+
+    <ImageButton
+        android:id="@+id/imgbttn_brush_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/big_brush"
+        app:layout_constraintTop_toBottomOf="@id/imgbttn_brush_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
