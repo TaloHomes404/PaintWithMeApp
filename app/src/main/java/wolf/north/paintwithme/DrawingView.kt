@@ -3,6 +3,7 @@ package wolf.north.paintwithme
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 
@@ -45,6 +46,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         mCanvasBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888 )
         canvas = Canvas(mCanvasBitmap!!)
     }
+
 
     //BUILD IN VIEW METHOD THAT IS CALLED EVERYIME WE WANT TO DRAW ON SCREEN BY TOUCH
     //USES CANVAS PARAMETER THAT IS STRUCTURED WITH OUR BITMAP, POSITION OF OUR CLICK (left,top)
@@ -99,6 +101,12 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         }
         invalidate()
         return true
+    }
+
+    fun setBrushSize(newSize: Float){
+        mBrushSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, resources.displayMetrics)
+
+        mDrawPaint!!.strokeWidth = mBrushSize
     }
 
     internal inner class CustomPath(var color: Int, var thicknessOfBrush: Float) : Path() {
