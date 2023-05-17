@@ -3,18 +3,29 @@ package wolf.north.paintwithme
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.get
 
 class MainActivity : AppCompatActivity() {
 
     private var drawingView: DrawingView? = null
+    private var mImageButtonCurrentPaint: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         drawingView = findViewById(R.id.drawing_view)
         drawingView?.setBrushSize(20.toFloat()) //DEFAULT BRUSH SIZE ON START
+
+        val linearLayoutOfColors: LinearLayout = findViewById(R.id.linear_palletOfColors)
+
+        mImageButtonCurrentPaint = linearLayoutOfColors[1] as ImageButton
+
 
         val imgBttnBrushSelector : ImageButton = findViewById(R.id.imgbttn_brushSizeSelector)
         imgBttnBrushSelector.setOnClickListener {
@@ -48,5 +59,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun paintColorClicked(view: View){
+        if(view !== mImageButtonCurrentPaint){
+            val imageButton = view as ImageButton
+            val colorTag = imageButton.tag.toString()
+            drawingView?.setColor(colorTag)
 
+            imageButton.setImageDrawable(
+                ContextCompat.getDrawable(this,R.drawable.pallet_pressed)
+            )
+
+            mImageButtonCurrentPaint?.setImageDrawable(
+                ContextCompat.getDrawable(this,R.drawable.pallet_normal)
+            )
+            mImageButtonCurrentPaint = view
+        }
+    }
 }
