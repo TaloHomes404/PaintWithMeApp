@@ -1,7 +1,9 @@
 package wolf.north.paintwithme
 
 import android.Manifest
+import android.app.AlertDialog
 import android.app.Dialog
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 
@@ -45,6 +48,10 @@ class MainActivity : AppCompatActivity() {
 
         mImageButtonCurrentPaint = linearLayoutOfColors[1] as ImageButton
 
+        val imgBttnGalery: ImageButton = findViewById(R.id.imgbttn_imageFromGalerySelector)
+        imgBttnGalery.setOnClickListener(){
+            requestStoragePermission()
+        }
 
         val imgBttnBrushSelector : ImageButton = findViewById(R.id.imgbttn_brushSizeSelector)
         imgBttnBrushSelector.setOnClickListener {
@@ -93,5 +100,21 @@ class MainActivity : AppCompatActivity() {
             )
             mImageButtonCurrentPaint = view
         }
+    }
+
+    private fun requestStoragePermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+            showRationaleDialog("PaintWithMe", "PaintWithMe need to ACCES your external storage, allow?")
+        }else{
+            requestedPermission.launch(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
+        }
+    }
+
+    private fun showRationaleDialog(title: String, message: String) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle(title).setMessage(message).setPositiveButton("Cancel"){
+            dialog, _ -> dialog.dismiss()
+        }
+        builder.create().show()
     }
 }
