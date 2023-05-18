@@ -1,5 +1,6 @@
 package wolf.north.paintwithme
 
+import android.Manifest
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 
@@ -15,6 +18,22 @@ class MainActivity : AppCompatActivity() {
 
     private var drawingView: DrawingView? = null
     private var mImageButtonCurrentPaint: ImageView? = null
+
+    val requestedPermission: ActivityResultLauncher<Array<String>> = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
+        permissions ->
+        permissions.entries.forEach{
+            val permissionName = it.key
+            val permissionValue = it.value
+            
+            if(permissionValue) {
+                Toast.makeText(this, "Permission granted, read storage files.", Toast.LENGTH_SHORT).show()
+            }else{
+                if(permissionName==Manifest.permission.READ_EXTERNAL_STORAGE){
+                    Toast.makeText(this, "You declined permission grant, use settings for futher storage permission.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
