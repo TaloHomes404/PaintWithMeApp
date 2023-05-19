@@ -154,12 +154,20 @@
     app:layout_constraintRight_toRightOf="parent"
     android:gravity="center">
    <ImageButton
+       android:id="@+id/imgbttn_undoSelector"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:layout_margin="5dp"
+       android:src="@drawable/ic_undo"
+       android:scaleType="centerCrop"
+       />
+   <ImageButton
        android:id="@+id/imgbttn_brushSizeSelector"
        android:layout_width="50dp"
        android:layout_height="50dp"
        android:layout_margin="5dp"
        android:src="@drawable/ic_brush"
-       android:scaleType="fitXY"
+       android:scaleType="centerCrop"
        />
    <ImageButton
        android:id="@+id/imgbttn_imageFromGalerySelector"
@@ -167,8 +175,9 @@
        android:layout_height="50dp"
        android:layout_margin="5dp"
        android:src="@drawable/ic_image"
-       android:scaleType="fitXY"
+       android:scaleType="centerCrop"
        />
+
 </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

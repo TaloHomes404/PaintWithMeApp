@@ -20,7 +20,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     private var mBrushSize: Float = 0.toFloat()
     private var color = Color.BLACK
     private var canvas: Canvas? = null
-    private val mSavedPaths = ArrayList<CustomPath>()
+    private val mSavedPaths = ArrayList<CustomPath>() // ARRAY OF SAVED DRAWING PATHS WE CREATED
+    private val mUndoPaths = ArrayList<CustomPath>() // ARRAY OF UNDO PATHS WE DELETED
 
     init{
         setUpDrawingScreen()
