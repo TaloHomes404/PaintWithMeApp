@@ -115,6 +115,23 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         mDrawPaint!!.color = color
     }
 
+    //UNDO BUTTON FUNCTIONALITY
+    fun clickUndoButton(){
+        if(mSavedPaths.size > 0){
+            mUndoPaths.add(mSavedPaths.removeLast())
+            invalidate()
+        }
+    }
+
+    //REDO BUTTON FUNCTIONALITY
+    fun clickRedoButton(){
+        if(mUndoPaths.size > 0){
+            mSavedPaths.add(mUndoPaths.removeLast())
+            invalidate()
+        }
+    }
+
+    //INNER CLASS TO MAKE OBJECT OF BRUSH
     internal inner class CustomPath(var color: Int, var thicknessOfBrush: Float) : Path() {
 
     }

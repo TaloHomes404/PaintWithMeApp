@@ -160,6 +160,7 @@
        android:layout_margin="5dp"
        android:src="@drawable/ic_undo"
        android:scaleType="centerCrop"
+       android:scaleX="-1"
        />
    <ImageButton
        android:id="@+id/imgbttn_brushSizeSelector"
@@ -175,6 +176,22 @@
        android:layout_height="50dp"
        android:layout_margin="5dp"
        android:src="@drawable/ic_image"
+       android:scaleType="centerCrop"
+       />
+   <ImageButton
+       android:id="@+id/imgbttn_saveImageToGalerySelector"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:layout_margin="5dp"
+       android:src="@drawable/ic_save"
+       android:scaleType="centerInside"
+       />
+   <ImageButton
+       android:id="@+id/imgbttn_redoSelector"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:layout_margin="5dp"
+       android:src="@drawable/ic_undo"
        android:scaleType="centerCrop"
        />
 
