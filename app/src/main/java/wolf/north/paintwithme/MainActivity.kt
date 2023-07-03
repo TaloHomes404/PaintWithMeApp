@@ -129,9 +129,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-}
-// }
-
 
 //THIS METHOD IS DIALOG WINDOW DISPLAYED AFTER CLICKING ON BRUSH ICON,
 //FOR EACH BUTTON (small,medium,big) WE USE METHOD setBrushSize AND CHANGE ITS VALUE
